@@ -16,12 +16,24 @@
 
     body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
     
-    /* INTEGRATED NON-OVERLAY TOP DOCK BAR */
-    .demo-topbar { width:100%; background:#0f172a; border-bottom:2px solid var(--primary); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; position:relative; z-index:100; box-shadow:0 4px 20px rgba(0,0,0,0.5); }
-    .topbar-label { font-size:0.88rem; font-weight:800; color:#c084fc; display:flex; align-items:center; gap:8px; }
-    .topbar-options { display:flex; gap:8px; flex-wrap:wrap; }
-    .theme-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:#f8fafc; padding:8px 14px; border-radius:12px; font-size:0.82rem; font-weight:800; cursor:pointer; transition:all 0.2s; }
-    .theme-btn.active { background:linear-gradient(135deg, #8b5cf6, #7c3aed); border-color:#8b5cf6; color:#fff; box-shadow:0 4px 14px rgba(139,92,246,0.4); }
+    /* INTEGRATED STICKY TOPBAR - ALWAYS AT TOP OF SCREEN, ZERO OVERLAPPING */
+    .demo-topbar { position: sticky; top: 0; left: 0; width: 100%; background: #0f172a; border-bottom: 2px solid var(--primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; z-index: 99999; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: background-color 0.3s, border-color 0.3s; }
+    .topbar-label { font-size: 0.88rem; font-weight: 800; color: #c084fc; display: flex; align-items: center; gap: 8px; }
+    .topbar-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .theme-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #f8fafc; padding: 8px 14px; border-radius: 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+    .theme-btn.active { background: linear-gradient(135deg, var(--primary), #7c3aed); border-color: var(--primary); color: #fff; box-shadow: 0 4px 14px rgba(139,92,246,0.4); }
+
+    /* LIGHT THEME STYLES */
+    body.theme-light .demo-topbar { background: #ffffff; border-bottom: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    body.theme-light .topbar-label { color: #0f172a; }
+    body.theme-light .theme-btn { background: #f1f5f9; border-color: #cbd5e1; color: #334155; }
+    body.theme-light .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
+
+    /* VIBRANT THEME STYLES */
+    body.theme-vibrant .demo-topbar { background: #0b0f19; border-bottom: 2px solid var(--primary); }
+    body.theme-vibrant .topbar-label { color: #f59e0b; }
+    body.theme-vibrant .theme-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #ffffff; }
+    body.theme-vibrant .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
 
     .hero-banner { width:100%; height:220px; background-size:cover; background-position:center; position:relative; }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,10,18,0.2) 0%, var(--bg) 100%); }
@@ -62,7 +74,7 @@
 </head>
 <body class="theme-dark">
 
-  <!-- BARRA DE TOPO INTEGRADA (SEM SOBREPOSIÇÃO) -->
+  <!-- BARRA DE TOPO INTEGRADA E FIXA NO TOPO DA TELA (STICKY) -->
   <div class="demo-topbar">
     <div class="topbar-label"><i class="fa-solid fa-palette"></i> Estilo do Layout:</div>
     <div class="topbar-options">
@@ -149,8 +161,13 @@
   <script>
     function switchTheme(themeName, btn) {
       document.body.className = 'theme-' + themeName;
-      document.querySelectorAll('.theme-btn').forEach(function(b) { b.classList.remove('active'); });
-      if (btn) btn.classList.add('active');
+      var btns = document.querySelectorAll('.theme-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btn) {
+        btn.classList.add('active');
+      }
     }
   </script>
 </body>
