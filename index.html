@@ -6,6 +6,18 @@
   <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    function switchTheme(themeName, btn) {
+      document.body.className = 'theme-' + themeName;
+      var btns = document.querySelectorAll('.theme-btn');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
+      if (btn) {
+        btn.classList.add('active');
+      }
+    }
+  </script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
@@ -157,18 +169,5 @@
       <a href="/" style="color:var(--subtext); text-decoration:none; font-size:0.88rem;">⚡ Desenvolvido por Vitrine Digital — Hodrich Digital</a>
     </div>
   </div>
-
-  <script>
-    function switchTheme(themeName, btn) {
-      document.body.className = 'theme-' + themeName;
-      var btns = document.querySelectorAll('.theme-btn');
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove('active');
-      }
-      if (btn) {
-        btn.classList.add('active');
-      }
-    }
-  </script>
 </body>
 </html>
