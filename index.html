@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo & Agendamento por Profissional</title>
+  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo & Agendamento</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -18,11 +18,7 @@
       }
     }
 
-    var staffSchedules = {
-      'Simone Santos (Unhas em Gel)': ['09:00 (Vago)', '10:30 (Vago)', '14:00 (Vago)', '16:00 (Vago)'],
-      'Bianca Rezitano (Cabelo & Cor)': ['10:00 (Vago)', '11:30 (Vago)', '15:00 (Vago)', '17:00 (Vago)'],
-      'Carla Mendes (Estética & Maquiagem)': ['09:30 (Vago)', '13:30 (Vago)', '15:30 (Vago)']
-    };
+    var staffSchedules = {"Eng. Ricardo Santos (Projetista de Homologação)":["09:00 (Vago)","11:00 (Vago)","14:00 (Vago)","16:00 (Vago)"],"Técnico Marcelo Faria (Estudo de Viabilidade no Local)":["10:00 (Vago)","13:00 (Vago)","15:00 (Vago)"]};
 
     function updateStaffSlots() {
       var proSelect = document.getElementById('booking-pro');
@@ -42,9 +38,9 @@
       var time = document.getElementById('booking-time').value;
       
       var text = 'Olá! Gostaria de agendar um horário no ' + "Solar Tech — Energia Solar (Demonstrativo)" + ':\n' +
-                 '👩‍🎨 Profissional: ' + pro + '\n' +
+                 '👤 Profissional / Técnico: ' + pro + '\n' +
                  '📅 Data Desejada: ' + date + '\n' +
-                 '⏰ Horário Escolhido na Agenda: ' + time + '\n\n' +
+                 '⏰ Horário Escolhido: ' + time + '\n\n' +
                  'Como faço para confirmar a reserva?';
                  
       var url = 'https://wa.me/' + phoneNum + '?text=' + encodeURIComponent(text);
@@ -56,7 +52,7 @@
       var date = document.getElementById('booking-date').value || 'Hoje / Amanhã';
       
       var text = 'Olá! Gostaria de entrar na FILA DE ENCAIXE / LISTA DE ESPERA no ' + "Solar Tech — Energia Solar (Demonstrativo)" + ':\n' +
-                 '👩‍🎨 Profissional Desejada: ' + pro + '\n' +
+                 '👤 Profissional / Técnico Desejado: ' + pro + '\n' +
                  '📅 Data de Interesse: ' + date + '\n' +
                  '⚡ Se surgir algum horário vago por cancelamento de última hora, me avise por aqui!';
                  
@@ -73,7 +69,7 @@
 
     body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
     
-    /* FIX NATIVE SELECT DROPDOWN OPTION VISIBILITY (DARK & LIGHT MODE) */
+    /* FIX NATIVE SELECT DROPDOWN OPTION VISIBILITY */
     select option {
       background-color: #0f172a !important;
       color: #f8fafc !important;
@@ -133,7 +129,7 @@
     <div class="profile-header">
       <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=300&auto=format&fit=crop&q=80" class="avatar" alt="Solar Tech — Energia Solar (Demonstrativo)">
       <div style="flex:1;">
-        <span style="background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px;">Plano Master ⭐ — Agenda por Profissional + Catálogo de Serviços e Produtos</span>
+        <span style="background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px;">Plano Master ⭐ — Vitrine com Agendamento & Produtos</span>
         <h1 style="font-family:'Outfit',sans-serif; font-size:2rem; font-weight:800; color:var(--text); margin-top:6px;">Solar Tech — Energia Solar (Demonstrativo)</h1>
         <div style="color:var(--accent); font-weight:700; margin-bottom:6px;">Engenharia Solar & Refrigeração Comercial • Ribeirão Preto - SP</div>
         
@@ -146,22 +142,20 @@
       </div>
     </div>
 
-    <!-- MÓDULO DE AGENDAMENTO DE ATENDIMENTO ONLINE COM AGENDA DINÂMICA POR PROFISSIONAL -->
+    <!-- MÓDULO DE AGENDAMENTO ESPECÍFICO DO SEGMENTO -->
     <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:24px; padding:24px; margin-bottom:32px;">
       <div style="font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:8px;">
-        <i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Consulta de Agenda por Profissional
+        <i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Agendar Estudo de Viabilidade ou Consultoria Solar
       </div>
       <p style="font-size:0.85rem; color:var(--subtext); margin-bottom:16px;">
-        Selecione a especialista desejada para visualizar os horários vagos cadastrados na agenda dela:
+        Selecione o profissional ou técnico para consultar os horários de atendimento disponíveis:
       </p>
       
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:16px;">
         <div>
-          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">1. Escolha a Profissional</label>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">1. Escolha o Engenheiro / Consultor Solar</label>
           <select id="booking-pro" onchange="updateStaffSlots()" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none; font-weight:600;">
-            <option value="Simone Santos (Unhas em Gel)">Simone Santos (Unhas em Gel)</option>
-            <option value="Bianca Rezitano (Cabelo & Cor)">Bianca Rezitano (Cabelo & Cor)</option>
-            <option value="Carla Mendes (Estética & Maquiagem)">Carla Mendes (Estética & Maquiagem)</option>
+            <option value="Eng. Ricardo Santos (Projetista de Homologação)">Eng. Ricardo Santos (Projetista de Homologação)</option><option value="Técnico Marcelo Faria (Estudo de Viabilidade no Local)">Técnico Marcelo Faria (Estudo de Viabilidade no Local)</option>
           </select>
         </div>
         
@@ -171,17 +165,17 @@
         </div>
         
         <div>
-          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">3. Horários Vagos da Profissional</label>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">3. Horários Vagos de Consultoria</label>
           <select id="booking-time" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none; font-weight:600;">
           </select>
         </div>
       </div>
 
       <button type="button" onclick="sendBookingWhatsapp('5513996351877')" style="width:100%; background:linear-gradient(135deg, #25D366, #16a34a); color:#fff; border:none; padding:16px; border-radius:16px; font-weight:800; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,0.3); margin-bottom:14px;">
-        <i class="fa-brands fa-whatsapp fa-xl"></i> Reservar Horário Selecionado no WhatsApp
+        <i class="fa-brands fa-whatsapp fa-xl"></i> Agendar Estudo Técnico no WhatsApp
       </button>
 
-      <!-- BOTÃO DE FILA DE ENCAIXE / ANTECIPAÇÃO POR CANCELAMENTO -->
+      <!-- BOTÃO DE FILA DE ENCAIXE / ANTECIPAÇÃO -->
       <div style="background:rgba(245, 158, 11, 0.08); border:1px dashed rgba(245, 158, 11, 0.3); border-radius:16px; padding:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <div style="font-size:0.85rem; color:#fbbf24; font-weight:600;">
           ⚡ <b>Não achou horário vago na data desejada?</b> Entre na Fila de Encaixe por Cancelamento!
@@ -192,77 +186,59 @@
       </div>
     </div>
 
-    <!-- SEÇÃO 1: CATÁLOGO DE SERVIÇOS DO SALÃO -->
-    <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-scissors" style="color:var(--primary)"></i> Catálogo de Serviços & Tabela de Atendimentos</h2>
+    <!-- SEÇÃO 1: CATÁLOGO DE SERVIÇOS DO ESTABELECIMENTO -->
+    <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-gears" style="color:var(--primary)"></i> Catálogo de Serviços & Especialidades</h2>
     <div class="grid-products">
     <div class="product-card">
       <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=200&auto=format&fit=crop&q=80" alt="Sistema Fotovoltaico Residencial (300 kWh/mês)" class="prod-img">
       <div class="prod-content">
-        <span class="prod-cat">💇‍♀️ Serviço</span>
+        <span class="prod-cat">🛠️ Serviço Especializado</span>
         <h3 class="prod-title">Sistema Fotovoltaico Residencial (300 kWh/mês)</h3>
         <p class="prod-desc">Kit completo com 6 painéis de alta eficiência, inversor homologado e homologação na distribuidora.</p>
         
         <div class="prod-footer">
           <span class="prod-price">Sob Orçamento</span>
-          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20o%20servi%C3%A7o:%20Sistema%20Fotovoltaico%20Residencial%20(300%20kWh%2Fm%C3%AAs)" target="_blank" class="btn-buy">
-            <i class="fa-brands fa-whatsapp"></i> Agendar Serviço
+          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20o%20servi%C3%A7o:%20Sistema%20Fotovoltaico%20Residencial%20(300%20kWh%2Fm%C3%AAs)" target="_blank" class="btn-buy">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar no Zap
           </a>
         </div>
       </div>
     </div>
   </div>
 
-    <!-- SEÇÃO 2: CATÁLOGO DE PRODUTOS À VENDA (HOME CARE & ESTOQUE) -->
-    <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-top:40px; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-pump-soap" style="color:#38bdf8"></i> Produtos à Venda (Home Care & Linha Profissional)</h2>
+    <!-- SEÇÃO 2: CATÁLOGO DE PRODUTOS À VENDA (PEÇAS / HOME CARE / EQUIPAMENTOS) -->
+    <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-top:40px; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-boxes-packing" style="color:#38bdf8"></i> Produtos & Peças em Estoque</h2>
     <div class="grid-products">
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400" alt="Kit Kit Shampoo + Condicionador Kérastase 250ml" class="prod-img">
+      <img src="https://images.unsplash.com/photo-1509391365360-2e959784a276?w=400" alt="Inversor Solar Grid-Tie 5kW WEG com Monitoramento WiFi" class="prod-img">
       <div class="prod-content">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <span class="prod-cat" style="color:#38bdf8;">🧴 Produto Home Care</span>
-          <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:12px;"><i class="fa-solid fa-boxes-stacked"></i> 5 un. em estoque</span>
-        </div>
-        <h3 class="prod-title">Kit Kit Shampoo + Condicionador Kérastase 250ml</h3>
-        <p class="prod-desc">Reconstrução profunda para fios danificados e quimicamente tratados.</p>
-        <div class="prod-footer">
-          <span class="prod-price" style="color:#38bdf8;">R$ 189,00</span>
-          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20comprar%20o%20produto:%20Kit%20Kit%20Shampoo%20%2B%20Condicionador%20K%C3%A9rastase%20250ml%20(R%24%20189%2C00)" target="_blank" class="btn-buy" style="background:linear-gradient(135deg, #0284c7, #0369a1);">
-            <i class="fa-solid fa-cart-shopping"></i> Comprar Produto
-          </a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1608248597309-45da1e028080?w=400" alt="Óleo Reparador de Pontas Wella Oil Reflections 100ml" class="prod-img">
-      <div class="prod-content">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <span class="prod-cat" style="color:#38bdf8;">🧴 Produto Home Care</span>
-          <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:12px;"><i class="fa-solid fa-boxes-stacked"></i> 8 un. em estoque</span>
-        </div>
-        <h3 class="prod-title">Óleo Reparador de Pontas Wella Oil Reflections 100ml</h3>
-        <p class="prod-desc">Nutrição instantânea, brilho espelhado e proteção térmica.</p>
-        <div class="prod-footer">
-          <span class="prod-price" style="color:#38bdf8;">R$ 145,00</span>
-          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20comprar%20o%20produto:%20%C3%93leo%20Reparador%20de%20Pontas%20Wella%20Oil%20Reflections%20100ml%20(R%24%20145%2C00)" target="_blank" class="btn-buy" style="background:linear-gradient(135deg, #0284c7, #0369a1);">
-            <i class="fa-solid fa-cart-shopping"></i> Comprar Produto
-          </a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=400" alt="Máscara de Nutrição Intensiva L'Oréal Absolut Repair 500g" class="prod-img">
-      <div class="prod-content">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <span class="prod-cat" style="color:#38bdf8;">🧴 Produto Home Care</span>
+          <span class="prod-cat" style="color:#38bdf8;">📦 Produto à Venda</span>
           <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:12px;"><i class="fa-solid fa-boxes-stacked"></i> 3 un. em estoque</span>
         </div>
-        <h3 class="prod-title">Máscara de Nutrição Intensiva L'Oréal Absolut Repair 500g</h3>
-        <p class="prod-desc">Tratamento intensivo home care para hidratação semanal.</p>
+        <h3 class="prod-title">Inversor Solar Grid-Tie 5kW WEG com Monitoramento WiFi</h3>
+        <p class="prod-desc">Inversor homologado com suporte técnico e garantia de 10 anos.</p>
         <div class="prod-footer">
-          <span class="prod-price" style="color:#38bdf8;">R$ 220,00</span>
-          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20comprar%20o%20produto:%20M%C3%A1scara%20de%20Nutri%C3%A7%C3%A3o%20Intensiva%20L'Or%C3%A9al%20Absolut%20Repair%20500g%20(R%24%20220%2C00)" target="_blank" class="btn-buy" style="background:linear-gradient(135deg, #0284c7, #0369a1);">
+          <span class="prod-price" style="color:#38bdf8;">R$ 4.200,00</span>
+          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20comprar%20o%20produto:%20Inversor%20Solar%20Grid-Tie%205kW%20WEG%20com%20Monitoramento%20WiFi%20(R%24%204.200%2C00)" target="_blank" class="btn-buy" style="background:linear-gradient(135deg, #0284c7, #0369a1);">
+            <i class="fa-solid fa-cart-shopping"></i> Comprar Produto
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400" alt="Painel Fotovoltaico 550W Monocristalino Jinko Solar" class="prod-img">
+      <div class="prod-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span class="prod-cat" style="color:#38bdf8;">📦 Produto à Venda</span>
+          <span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:12px;"><i class="fa-solid fa-boxes-stacked"></i> 24 un. em estoque</span>
+        </div>
+        <h3 class="prod-title">Painel Fotovoltaico 550W Monocristalino Jinko Solar</h3>
+        <p class="prod-desc">Módulo solar de alta eficiência com estrutura de alumínio.</p>
+        <div class="prod-footer">
+          <span class="prod-price" style="color:#38bdf8;">R$ 780,00</span>
+          <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Gostaria%20de%20comprar%20o%20produto:%20Painel%20Fotovoltaico%20550W%20Monocristalino%20Jinko%20Solar%20(R%24%20780%2C00)" target="_blank" class="btn-buy" style="background:linear-gradient(135deg, #0284c7, #0369a1);">
             <i class="fa-solid fa-cart-shopping"></i> Comprar Produto
           </a>
         </div>
