@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo</title>
+  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo & Agendamento</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -17,82 +17,69 @@
         btn.classList.add('active');
       }
     }
+
+    function sendBookingWhatsapp(phoneNum) {
+      var pro = document.getElementById('booking-pro').value;
+      var date = document.getElementById('booking-date').value || 'Data a combinar';
+      var time = document.getElementById('booking-time').value;
+      
+      var text = 'Olá! Gostaria de agendar um horário no ' + "Solar Tech — Energia Solar (Demonstrativo)" + ':\n' +
+                 '👩‍🎨 Profissional: ' + pro + '\n' +
+                 '📅 Data Desejada: ' + date + '\n' +
+                 '⏰ Horário: ' + time + '\n\n' +
+                 'Como faço para confirmar a reserva?';
+                 
+      var url = 'https://wa.me/' + phoneNum + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
   </script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
     
-    /* THEMES */
     body.theme-dark { --bg: #070a12; --card-bg: rgba(15, 23, 42, 0.85); --primary: #8b5cf6; --accent: #c084fc; --text: #f8fafc; --subtext: #94a3b8; --border: rgba(255, 255, 255, 0.08); }
     body.theme-light { --bg: #f8fafc; --card-bg: #ffffff; --primary: #7c3aed; --accent: #9333ea; --text: #0f172a; --subtext: #475569; --border: rgba(0, 0, 0, 0.1); }
     body.theme-vibrant { --bg: #0b0f19; --card-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)); --primary: #ec4899; --accent: #f59e0b; --text: #ffffff; --subtext: #cbd5e1; --border: rgba(236, 72, 153, 0.3); }
 
     body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
     
-    /* INTEGRATED STICKY TOPBAR - ALWAYS AT TOP OF SCREEN, ZERO OVERLAPPING */
-    .demo-topbar { position: sticky; top: 0; left: 0; width: 100%; background: #0f172a; border-bottom: 2px solid var(--primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; z-index: 99999; box-shadow: 0 4px 20px rgba(0,0,0,0.6); transition: background-color 0.3s, border-color 0.3s; }
+    .demo-topbar { position: sticky; top: 0; left: 0; width: 100%; background: #0f172a; border-bottom: 2px solid var(--primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; z-index: 99999; box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
     .topbar-label { font-size: 0.88rem; font-weight: 800; color: #c084fc; display: flex; align-items: center; gap: 8px; }
     .topbar-options { display: flex; gap: 8px; flex-wrap: wrap; }
-    .theme-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #f8fafc; padding: 8px 14px; border-radius: 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: all 0.2s; }
-    .theme-btn.active { background: linear-gradient(135deg, var(--primary), #7c3aed); border-color: var(--primary); color: #fff; box-shadow: 0 4px 14px rgba(139,92,246,0.4); }
+    .theme-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #f8fafc; padding: 8px 14px; border-radius: 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; }
+    .theme-btn.active { background: linear-gradient(135deg, var(--primary), #7c3aed); border-color: var(--primary); color: #fff; }
 
-    /* LIGHT THEME STYLES */
-    body.theme-light .demo-topbar { background: #ffffff; border-bottom: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    body.theme-light .demo-topbar { background: #ffffff; border-bottom: 2px solid var(--primary); }
     body.theme-light .topbar-label { color: #0f172a; }
     body.theme-light .theme-btn { background: #f1f5f9; border-color: #cbd5e1; color: #334155; }
     body.theme-light .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
 
-    /* VIBRANT THEME STYLES */
-    body.theme-vibrant .demo-topbar { background: #0b0f19; border-bottom: 2px solid var(--primary); }
-    body.theme-vibrant .topbar-label { color: #f59e0b; }
-    body.theme-vibrant .theme-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #ffffff; }
-    body.theme-vibrant .theme-btn.active { background: var(--primary); border-color: var(--primary); color: #ffffff; }
-
     .hero-banner { width:100%; height:220px; background-size:cover; background-position:center; position:relative; }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(7,10,18,0.2) 0%, var(--bg) 100%); }
-    
     .container { max-width: 920px; margin:0 auto; padding: 0 20px; position:relative; z-index:2; }
     .profile-header { display:flex; align-items:flex-end; gap:20px; margin-top:-75px; margin-bottom:24px; flex-wrap:wrap; }
-    .avatar { width:130px; height:130px; border-radius:24px; border:3px solid var(--primary); object-fit:cover; box-shadow:0 10px 25px rgba(139,92,246,0.3); }
-    .badge-master { background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px; margin-bottom:8px; display:inline-block; }
-    
-    .action-bar { display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap; }
-    .btn-wa { flex:1; min-width:220px; background:linear-gradient(135deg, #25D366, #16a34a); color:#fff; text-decoration:none; padding:14px; border-radius:14px; font-weight:800; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,0.25); }
-    .btn-pix { background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); padding:14px 20px; border-radius:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; }
-    
-    .grid-products { display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:20px; margin-bottom:36px; }
-    .product-card { background:var(--card-bg); border:1px solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; backdrop-filter:blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .prod-img { width:100%; height:180px; object-fit:cover; }
+    .avatar { width:130px; height:130px; border-radius:24px; border:3px solid var(--primary); object-fit:cover; box-shadow: 0 10px 30px rgba(139,92,246,0.3); }
+
+    .grid-products { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:20px; margin-bottom:36px; }
+    .product-card { background:var(--card-bg); border:1px solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; }
+    .prod-img { width:100%; height:160px; object-fit:cover; }
     .prod-content { padding:18px; flex:1; display:flex; flex-direction:column; }
     .prod-cat { font-size:0.75rem; font-weight:800; color:var(--accent); text-transform:uppercase; margin-bottom:4px; }
     .prod-title { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:6px; }
-    .prod-desc { font-size:0.85rem; color:var(--subtext); margin-bottom:14px; flex:1; line-height:1.4; }
+    .prod-desc { font-size:0.85rem; color:var(--subtext); margin-bottom:14px; flex:1; }
     .prod-footer { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); padding-top:14px; }
     .prod-price { font-size:1.1rem; font-weight:800; color:var(--accent); }
-    .btn-buy { background:var(--primary); color:#fff; text-decoration:none; padding:10px 16px; border-radius:12px; font-size:0.82rem; font-weight:700; box-shadow:0 4px 12px rgba(139,92,246,0.3); }
+    .btn-buy { background:var(--primary); color:#fff; text-decoration:none; padding:10px 16px; border-radius:12px; font-size:0.82rem; font-weight:700; }
 
-    /* DEPOIMENTOS & GALERIA */
-    .section-title { font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:18px; color:var(--text); display:flex; align-items:center; gap:10px; }
-    .grid-deps { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-bottom:36px; }
-    .dep-card { background:var(--card-bg); border:1px solid var(--border); padding:20px; border-radius:18px; backdrop-filter:blur(10px); }
-    .dep-stars { color:#fbbf24; font-size:0.9rem; margin-bottom:8px; }
-    .dep-text { font-size:0.88rem; color:var(--subtext); font-style:italic; margin-bottom:10px; line-height:1.5; }
-    .dep-author { font-size:0.8rem; font-weight:700; color:var(--accent); text-align:right; }
-
-    .grid-gallery { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:12px; margin-bottom:36px; }
-    .gallery-item { height:120px; border-radius:14px; overflow:hidden; border:1px solid var(--border); cursor:pointer; }
-    .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
-    .gallery-item:hover img { transform:scale(1.1); }
+    footer { text-align:center; padding:32px 20px; border-top:1px solid var(--border); color:var(--subtext); font-size:0.85rem; margin-top:40px; }
   </style>
 </head>
 <body class="theme-dark">
-
-  <!-- BARRA DE TOPO INTEGRADA E FIXA NO TOPO DA TELA (STICKY) -->
   <div class="demo-topbar">
     <div class="topbar-label"><i class="fa-solid fa-palette"></i> Estilo do Layout:</div>
     <div class="topbar-options">
       <button type="button" onclick="switchTheme('dark', this)" class="theme-btn active">🌙 Noturno</button>
-      <button type="button" onclick="switchTheme('light', this)" class="theme-btn">☀️ Claro</button>
-      <button type="button" onclick="switchTheme('vibrant', this)" class="theme-btn">⚡ Vibrante</button>
+      <button type="button" onclick="switchTheme('light', this)" class="theme-btn ">☀️ Claro</button>
+      <button type="button" onclick="switchTheme('vibrant', this)" class="theme-btn ">⚡ Vibrante</button>
     </div>
   </div>
 
@@ -104,29 +91,53 @@
     <div class="profile-header">
       <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=300&auto=format&fit=crop&q=80" class="avatar" alt="Solar Tech — Energia Solar (Demonstrativo)">
       <div style="flex:1;">
-        <span class="badge-master">Plano Master ⭐ — Vitrine Interativa + Catálogo + Pix</span>
-        <h1 style="font-family:'Outfit',sans-serif; font-size:2rem; font-weight:800; color:var(--text);">Solar Tech — Energia Solar (Demonstrativo)</h1>
+        <span style="background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px;">Plano Master ⭐ — Vitrine + Catálogo + Agendamento</span>
+        <h1 style="font-family:'Outfit',sans-serif; font-size:2rem; font-weight:800; color:var(--text); margin-top:6px;">Solar Tech — Energia Solar (Demonstrativo)</h1>
         <div style="color:var(--accent); font-weight:700; margin-bottom:6px;">Engenharia Solar & Refrigeração Comercial • Ribeirão Preto - SP</div>
-        <p style="font-size:0.88rem; color:var(--subtext); line-height:1.4;">Projetos de energia fotovoltaica para residências e comércios. Reduza até 95% da sua conta de luz com garantia de 25 anos nas placas!</p>
-        <div style="display:flex; align-items:center; gap:16px; margin-top:10px;">
-          <a href="https://instagram.com/solartech_demo" target="_blank" style="color:#e1306c; font-size:1.4rem;"><i class="fa-brands fa-instagram"></i></a>
-          
-          
-        </div>
       </div>
     </div>
 
-    <div class="action-bar">
-      <a href="https://wa.me/5513996351877?text=Ol%C3%A1!%20Vim%20pela%20sua%20Vitrine%20Master" target="_blank" class="btn-wa">
-        <i class="fa-brands fa-whatsapp fa-lg"></i> Atendimento no WhatsApp
-      </a>
-      <a href="https://www.google.com/maps?q=Ribeirao+Preto+SP" target="_blank" class="btn-pix" style="text-decoration:none;">
-        <i class="fa-solid fa-map-location-dot"></i> Google Maps
-      </a>
-      <button class="btn-pix" onclick="navigator.clipboard.writeText('13996351877'); alert('Chave PIX copiada!')"><i class="fa-solid fa-copy"></i> Copiar Chave PIX (13996351877)</button>
+    <!-- MÓDULO DE AGENDAMENTO DE ATENDIMENTO ONLINE -->
+    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:24px; padding:24px; margin-bottom:32px;">
+      <div style="font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+        <i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Agendar Horário & Escolher Profissional
+      </div>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:16px;">
+        <div>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">1. Escolha a Profissional</label>
+          <select id="booking-pro" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none;">
+            <option value="Qualquer Profissional Disponível">Qualquer Profissional Disponível</option>
+            <option value="Simone Santos (Unhas em Gel)">Simone Santos (Unhas em Gel)</option>
+            <option value="Bianca Rezitano (Cabelo & Colorimetria)">Bianca Rezitano (Cabelo & Cor)</option>
+            <option value="Carla Mendes (Maquiagem & Estética)">Carla Mendes (Estética)</option>
+          </select>
+        </div>
+        
+        <div>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">2. Escolha a Data</label>
+          <input type="date" id="booking-date" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none;">
+        </div>
+        
+        <div>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">3. Escolha o Horário</label>
+          <select id="booking-time" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none;">
+            <option value="09:00">09:00</option>
+            <option value="10:30">10:30</option>
+            <option value="13:00">13:00</option>
+            <option value="14:30">14:30</option>
+            <option value="16:00">16:00</option>
+            <option value="17:30">17:30</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" onclick="sendBookingWhatsapp('5513996351877')" style="width:100%; background:linear-gradient(135deg, #25D366, #16a34a); color:#fff; border:none; padding:16px; border-radius:16px; font-weight:800; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,0.3);">
+        <i class="fa-brands fa-whatsapp fa-xl"></i> Solicitar Reserva de Horário pelo WhatsApp
+      </button>
     </div>
 
-    <h2 class="section-title"><i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Catálogo Visual de Serviços</h2>
+    <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-scissors" style="color:var(--primary)"></i> Catálogo de Serviços & Tabela de Valores</h2>
     <div class="grid-products">
     <div class="product-card">
       <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=200&auto=format&fit=crop&q=80" alt="Sistema Fotovoltaico Residencial (300 kWh/mês)" class="prod-img">
@@ -145,29 +156,9 @@
     </div>
   </div>
 
-    
-      <h2 class="section-title"><i class="fa-solid fa-images" style="color:var(--accent)"></i> Portfólio & Trabalhos Realizados</h2>
-      <div class="grid-gallery">
-    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=400&auto=format&fit=crop&q=80')">
-      <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=400&auto=format&fit=crop&q=80" alt="Portfólio">
-    </div>
-  </div>
-    
-
-    
-      <h2 class="section-title"><i class="fa-solid fa-star" style="color:#fbbf24"></i> Depoimentos de Clientes (Prova Social)</h2>
-      <div class="grid-deps">
-    <div class="dep-card">
-      <div class="dep-stars">⭐⭐⭐⭐⭐</div>
-      <p class="dep-text">"Minha conta de luz caiu de R$ 850 para o valor mínimo da taxa. Excelente investimento!"</p>
-      <div class="dep-author">— Cliente Fictício E</div>
-    </div>
-  </div>
-    
-
-    <div style="text-align:center; margin-top:40px;">
-      <a href="https://vitrine.hodrichdigital.tech/" target="_blank" style="color:var(--subtext); text-decoration:none; font-size:0.88rem; font-weight:700;">⚡ Desenvolvido por Vitrine Digital — Hodrich Digital</a>
-    </div>
+    <footer>
+      ⚡ Desenvolvido por <a href="https://vitrine.hodrichdigital.tech/" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:700;">Vitrine Digital — Hodrich Digital</a>
+    </footer>
   </div>
 </body>
 </html>
