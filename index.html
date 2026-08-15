@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo & Agendamento</title>
+  <title>Solar Tech — Energia Solar (Demonstrativo) — Vitrine Master com Catálogo & Agendamento por Profissional</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -18,6 +18,24 @@
       }
     }
 
+    var staffSchedules = {
+      'Simone Santos (Unhas em Gel)': ['09:00 (Vago)', '10:30 (Vago)', '14:00 (Vago)', '16:00 (Vago)'],
+      'Bianca Rezitano (Cabelo & Cor)': ['10:00 (Vago)', '11:30 (Vago)', '15:00 (Vago)', '17:00 (Vago)'],
+      'Carla Mendes (Estética & Maquiagem)': ['09:30 (Vago)', '13:30 (Vago)', '15:30 (Vago)']
+    };
+
+    function updateStaffSlots() {
+      var proSelect = document.getElementById('booking-pro');
+      var timeSelect = document.getElementById('booking-time');
+      var selectedPro = proSelect.value;
+      
+      var slots = staffSchedules[selectedPro] || ['09:00 (Vago)', '10:30 (Vago)', '14:00 (Vago)', '16:00 (Vago)'];
+      
+      timeSelect.innerHTML = slots.map(function(slot) {
+        return '<option value="' + slot + '">' + slot + '</option>';
+      }).join('');
+    }
+
     function sendBookingWhatsapp(phoneNum) {
       var pro = document.getElementById('booking-pro').value;
       var date = document.getElementById('booking-date').value || 'Data a combinar';
@@ -26,8 +44,21 @@
       var text = 'Olá! Gostaria de agendar um horário no ' + "Solar Tech — Energia Solar (Demonstrativo)" + ':\n' +
                  '👩‍🎨 Profissional: ' + pro + '\n' +
                  '📅 Data Desejada: ' + date + '\n' +
-                 '⏰ Horário: ' + time + '\n\n' +
+                 '⏰ Horário Escolhido na Agenda: ' + time + '\n\n' +
                  'Como faço para confirmar a reserva?';
+                 
+      var url = 'https://wa.me/' + phoneNum + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
+
+    function sendFitListWhatsapp(phoneNum) {
+      var pro = document.getElementById('booking-pro').value;
+      var date = document.getElementById('booking-date').value || 'Hoje / Amanhã';
+      
+      var text = 'Olá! Gostaria de entrar na FILA DE ENCAIXE / LISTA DE ESPERA no ' + "Solar Tech — Energia Solar (Demonstrativo)" + ':\n' +
+                 '👩‍🎨 Profissional Desejada: ' + pro + '\n' +
+                 '📅 Data de Interesse: ' + date + '\n' +
+                 '⚡ Se surgir algum horário vago por cancelamento de última hora, me avise por aqui!';
                  
       var url = 'https://wa.me/' + phoneNum + '?text=' + encodeURIComponent(text);
       window.open(url, '_blank');
@@ -73,7 +104,7 @@
     footer { text-align:center; padding:32px 20px; border-top:1px solid var(--border); color:var(--subtext); font-size:0.85rem; margin-top:40px; }
   </style>
 </head>
-<body class="theme-dark">
+<body class="theme-dark" onload="updateStaffSlots()">
   <div class="demo-topbar">
     <div class="topbar-label"><i class="fa-solid fa-palette"></i> Estilo do Layout:</div>
     <div class="topbar-options">
@@ -91,26 +122,28 @@
     <div class="profile-header">
       <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=300&auto=format&fit=crop&q=80" class="avatar" alt="Solar Tech — Energia Solar (Demonstrativo)">
       <div style="flex:1;">
-        <span style="background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px;">Plano Master ⭐ — Vitrine + Catálogo + Agendamento</span>
+        <span style="background:rgba(139,92,246,0.15); border:1px solid var(--primary); color:var(--accent); font-size:0.75rem; font-weight:800; padding:4px 14px; border-radius:20px;">Plano Master ⭐ — Agenda por Profissional + Fila de Encaixe</span>
         <h1 style="font-family:'Outfit',sans-serif; font-size:2rem; font-weight:800; color:var(--text); margin-top:6px;">Solar Tech — Energia Solar (Demonstrativo)</h1>
         <div style="color:var(--accent); font-weight:700; margin-bottom:6px;">Engenharia Solar & Refrigeração Comercial • Ribeirão Preto - SP</div>
       </div>
     </div>
 
-    <!-- MÓDULO DE AGENDAMENTO DE ATENDIMENTO ONLINE -->
+    <!-- MÓDULO DE AGENDAMENTO DE ATENDIMENTO ONLINE COM AGENDA DINÂMICA POR PROFISSIONAL -->
     <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:24px; padding:24px; margin-bottom:32px;">
-      <div style="font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-        <i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Agendar Horário & Escolher Profissional
+      <div style="font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:800; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+        <i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Consulta de Agenda por Profissional
       </div>
+      <p style="font-size:0.85rem; color:var(--subtext); margin-bottom:16px;">
+        Selecione a especialista desejada para visualizar os horários vagos cadastrados na agenda dela:
+      </p>
       
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:16px;">
         <div>
           <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">1. Escolha a Profissional</label>
-          <select id="booking-pro" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none;">
-            <option value="Qualquer Profissional Disponível">Qualquer Profissional Disponível</option>
+          <select id="booking-pro" onchange="updateStaffSlots()" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none; font-weight:600;">
             <option value="Simone Santos (Unhas em Gel)">Simone Santos (Unhas em Gel)</option>
-            <option value="Bianca Rezitano (Cabelo & Colorimetria)">Bianca Rezitano (Cabelo & Cor)</option>
-            <option value="Carla Mendes (Maquiagem & Estética)">Carla Mendes (Estética)</option>
+            <option value="Bianca Rezitano (Cabelo & Cor)">Bianca Rezitano (Cabelo & Cor)</option>
+            <option value="Carla Mendes (Estética & Maquiagem)">Carla Mendes (Estética & Maquiagem)</option>
           </select>
         </div>
         
@@ -120,21 +153,25 @@
         </div>
         
         <div>
-          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">3. Escolha o Horário</label>
-          <select id="booking-time" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none;">
-            <option value="09:00">09:00</option>
-            <option value="10:30">10:30</option>
-            <option value="13:00">13:00</option>
-            <option value="14:30">14:30</option>
-            <option value="16:00">16:00</option>
-            <option value="17:30">17:30</option>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--subtext); display:block; margin-bottom:6px;">3. Horários Vagos da Profissional</label>
+          <select id="booking-time" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:10px; border-radius:12px; color:var(--text); outline:none; font-weight:600;">
           </select>
         </div>
       </div>
 
-      <button type="button" onclick="sendBookingWhatsapp('5513996351877')" style="width:100%; background:linear-gradient(135deg, #25D366, #16a34a); color:#fff; border:none; padding:16px; border-radius:16px; font-weight:800; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,0.3);">
-        <i class="fa-brands fa-whatsapp fa-xl"></i> Solicitar Reserva de Horário pelo WhatsApp
+      <button type="button" onclick="sendBookingWhatsapp('5513996351877')" style="width:100%; background:linear-gradient(135deg, #25D366, #16a34a); color:#fff; border:none; padding:16px; border-radius:16px; font-weight:800; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,0.3); margin-bottom:14px;">
+        <i class="fa-brands fa-whatsapp fa-xl"></i> Reservar Horário Selecionado no WhatsApp
       </button>
+
+      <!-- BOTÃO DE FILA DE ENCAIXE / ANTECIPAÇÃO POR CANCELAMENTO -->
+      <div style="background:rgba(245, 158, 11, 0.08); border:1px dashed rgba(245, 158, 11, 0.3); border-radius:16px; padding:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <div style="font-size:0.85rem; color:#fbbf24; font-weight:600;">
+          ⚡ <b>Não achou horário vago na data desejada?</b> Entre na Fila de Encaixe por Cancelamento!
+        </div>
+        <button type="button" onclick="sendFitListWhatsapp('5513996351877')" style="background:rgba(245, 158, 11, 0.2); border:1px solid #f59e0b; color:#fbbf24; padding:8px 16px; border-radius:10px; font-weight:800; font-size:0.82rem; cursor:pointer;">
+          <i class="fa-solid fa-bolt"></i> Entrar na Fila de Encaixe
+        </button>
+      </div>
     </div>
 
     <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:18px; color:var(--text);"><i class="fa-solid fa-scissors" style="color:var(--primary)"></i> Catálogo de Serviços & Tabela de Valores</h2>
